@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Complaint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      .page-bg {
+        background: #f8fafc;
+      }
+      .sidebar-bg {
+        background: #f8fbff;
+      }
+    </style>
+  </head>
+  <body class="page-bg min-h-screen text-slate-900">
+    <div class="min-h-screen flex">
+      <aside class="sidebar-bg w-72 border-r border-slate-200 px-6 py-8 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-12">
+            <div class="h-12 w-12 rounded-3xl bg-blue-700 flex items-center justify-center text-white font-bold">A</div>
+            <div>
+              <p class="font-bold text-lg">ADGIPS</p>
+              <p class="text-xs text-slate-500">Facility Central</p>
+            </div>
+          </div>
+          <nav class="space-y-3 text-slate-700">
+            <a href="index.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Dashboard</a>
+            <a href="mycomplaints.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">My Complaints</a>
+            <a href="filecomplaint.html" class="block rounded-2xl px-4 py-3 bg-slate-100 text-blue-700 font-semibold">File Complaint</a>
+            <a href="assessmentmanagement.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Asset Management</a>
+            <a href="aiassistant.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">AI Assistant</a>
+          </nav>
+        </div>
+
+        <div class="space-y-4">
+          <div class="rounded-3xl bg-slate-950 text-white px-4 py-5 shadow-lg">
+            <p class="text-[11px] uppercase tracking-[0.3em] text-sky-300 font-semibold">AI Performance</p>
+            <p class="mt-3 text-sm leading-6 text-slate-200">
+              AI accurately categorized 94% of issues last month. Resource allocation optimized by 12%.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 p-4 rounded-3xl bg-white border border-slate-200">
+            <div class="h-11 w-11 rounded-full bg-slate-200 flex items-center justify-center text-slate-700 font-semibold">BS</div>
+            <div>
+              <p class="font-semibold">Bhupendra S.</p>
+              <p class="text-xs text-slate-500">Admin Access</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <main class="flex-1 p-8">
+        <div class="max-w-4xl mx-auto">
+          <div class="mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">Register a Concern</h1>
+            <p class="text-slate-500">Describe the issue and our AI will categorize and prioritize it for resolution.</p>
+          </div>
+
+          <form id="complaint-form" class="space-y-6">
+            <div class="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-2" for="room">Room Number</label>
+                  <input
+                    id="room"
+                    name="room"
+                    type="text"
+                    value="402"
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none"
+                    placeholder="Ex: 402"
+                  />
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-slate-700 mb-2" for="block">Block</label>
+                  <select
+                    id="block"
+                    name="block"
+                    class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none"
+                  >
+                    <option>Block B</option>
+                    <option>Block A</option>
+                    <option>Block C</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <label class="block text-sm font-medium text-slate-700 mb-2" for="description">Issue Description</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  rows="4"
+                  class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-100 focus:border-blue-500 outline-none resize-none"
+                  placeholder="Ex: Water leakage from the bathroom tap since morning..."
+                ></textarea>
+              </div>
+
+              <button
+                id="analyze-button"
+                type="button"
+                class="w-full py-4 bg-slate-900 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-slate-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span id="analyze-text">Analyze with AI</span>
+              </button>
+
+              <div id="analysis-result" class="mt-6 hidden space-y-4">
+                <div class="p-5 bg-blue-50/50 rounded-2xl border border-blue-100">
+                  <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+                    <div class="flex items-center gap-2">
+                      <span class="text-xs font-bold uppercase tracking-wider text-blue-600">AI Assessment</span>
+                      <div class="h-1 w-1 bg-blue-300 rounded-full"></div>
+                      <span class="text-xs text-blue-500 font-medium">PLUMBING</span>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-bold uppercase bg-orange-100 text-orange-700">high Priority</span>
+                  </div>
+                  <p class="text-sm text-slate-600 leading-relaxed italic">"Water leakage appears to be a plumbing issue that needs prompt attention."</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <button
+                    id="edit-button"
+                    type="button"
+                    class="flex-1 py-4 bg-slate-100 text-slate-600 rounded-xl font-medium hover:bg-slate-200 transition-colors"
+                  >
+                    Edit Details
+                  </button>
+                  <button
+                    type="submit"
+                    class="flex-[2] py-4 bg-blue-600 text-white rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all"
+                  >
+                    Confirm &amp; Submit Issue
+                    <span class="inline-block w-4 h-4">✉️</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div class="p-4 bg-white border border-slate-100 rounded-2xl text-center">
+                <div class="text-slate-400 mb-2 text-2xl">⚠️</div>
+                <p class="text-xs font-bold text-slate-700">24/7 Support</p>
+                <p class="text-[10px] text-slate-400">Always active</p>
+              </div>
+              <div class="p-4 bg-white border border-slate-100 rounded-2xl text-center">
+                <div class="text-slate-400 mb-2 text-2xl">✅</div>
+                <p class="text-xs font-bold text-slate-700">Smart Tracking</p>
+                <p class="text-[10px] text-slate-400">Live updates</p>
+              </div>
+              <div class="p-4 bg-white border border-slate-100 rounded-2xl text-center">
+                <div class="text-slate-400 mb-2 text-2xl">ℹ️</div>
+                <p class="text-xs font-bold text-slate-700">Help Center</p>
+                <p class="text-[10px] text-slate-400">Get answers</p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      const descriptionInput = document.getElementById('description');
+      const analyzeButton = document.getElementById('analyze-button');
+      const analyzeText = document.getElementById('analyze-text');
+      const analysisResult = document.getElementById('analysis-result');
+      const editButton = document.getElementById('edit-button');
+      const complaintForm = document.getElementById('complaint-form');
+      const navLinks = document.querySelectorAll('nav a');
+
+      function updateAnalyzeState() {
+        analyzeButton.disabled = !descriptionInput.value.trim();
+      }
+
+      function getPrediction(description) {
+        const text = description.toLowerCase();
+        if (text.includes('leak') || text.includes('water') || text.includes('plumbing') || text.includes('tap')) {
+          return { category: 'Plumbing', priority: 'High', reasoning: 'The issue appears to involve water or plumbing and needs prompt attention.' };
+        }
+        if (text.includes('power') || text.includes('electric') || text.includes('socket') || text.includes('light')) {
+          return { category: 'Electrical', priority: 'Medium', reasoning: 'This sounds like an electrical concern that should be checked soon.' };
+        }
+        if (text.includes('wifi') || text.includes('internet') || text.includes('network')) {
+          return { category: 'Connectivity', priority: 'Low', reasoning: 'The issue seems related to connectivity or network access.' };
+        }
+        if (text.includes('fire') || text.includes('smoke') || text.includes('gas')) {
+          return { category: 'Safety', priority: 'Critical', reasoning: 'This is a potentially dangerous issue and requires immediate action.' };
+        }
+        return { category: 'General', priority: 'Medium', reasoning: 'The AI categorized this as a general concern for review.' };
+      }
+
+      function showAnalysis(result) {
+        const categoryBadge = analysisResult.querySelector('.text-blue-500');
+        const priorityBadge = analysisResult.querySelector('.px-3');
+        const reasoningText = analysisResult.querySelector('p');
+
+        if (categoryBadge) categoryBadge.textContent = result.category.toUpperCase();
+        if (priorityBadge) priorityBadge.textContent = `${result.priority} Priority`;
+        if (reasoningText) reasoningText.textContent = `"${result.reasoning}"`;
+
+        analysisResult.classList.remove('hidden');
+      }
+
+      function setActiveNav() {
+        const currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === currentPage) {
+            link.classList.add('bg-slate-100', 'text-blue-700', 'font-semibold');
+          } else {
+            link.classList.remove('bg-slate-100', 'text-blue-700', 'font-semibold');
+          }
+        });
+      }
+
+      function saveComplaint(complaint) {
+        const stored = localStorage.getItem('hostelComplaints');
+        const complaints = stored ? JSON.parse(stored) : [];
+        complaints.push(complaint);
+        localStorage.setItem('hostelComplaints', JSON.stringify(complaints));
+      }
+
+      descriptionInput.addEventListener('input', updateAnalyzeState);
+      updateAnalyzeState();
+      setActiveNav();
+
+      analyzeButton.addEventListener('click', () => {
+        if (!descriptionInput.value.trim()) return;
+        analyzeButton.disabled = true;
+        analyzeText.textContent = 'AI is analyzing...';
+
+        setTimeout(() => {
+          const result = getPrediction(descriptionInput.value);
+          showAnalysis(result);
+          analyzeText.textContent = 'Analyze with AI';
+          analyzeButton.disabled = false;
+          analyzeButton.focus();
+        }, 1000);
+      });
+
+      editButton.addEventListener('click', () => {
+        analysisResult.classList.add('hidden');
+        descriptionInput.focus();
+        updateAnalyzeState();
+      });
+
+      complaintForm.addEventListener('submit', event => {
+        event.preventDefault();
+
+        if (analysisResult.classList.contains('hidden')) {
+          alert('Please analyze the complaint before submitting.');
+          return;
+        }
+
+        const category = analysisResult.querySelector('.text-blue-500')?.textContent || 'GENERAL';
+        const priority = analysisResult.querySelector('.px-3')?.textContent.replace(' Priority', '') || 'Medium';
+
+        const complaint = {
+          id: Date.now().toString(36),
+          room: document.getElementById('room').value.trim(),
+          block: document.getElementById('block').value,
+          description: descriptionInput.value.trim(),
+          category: category.charAt(0) + category.slice(1).toLowerCase(),
+          priority,
+          status: 'Pending',
+          createdAt: new Date().toISOString()
+        };
+
+//i add this
+complaintForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  if (analysisResult.classList.contains('hidden')) {
+    alert('Please analyze the complaint before submitting.');
+    return;
+  }
+
+  const data = new FormData();
+  data.append("room", document.getElementById('room').value);
+  data.append("block", document.getElementById('block').value);
+  data.append("description", descriptionInput.value);
+
+  data.append("category", analysisResult.querySelector('.text-blue-500')?.textContent);
+  data.append("priority", analysisResult.querySelector('.px-3')?.textContent.replace(' Priority',''));
+
+  try {
+    const response = await fetch("complaint.php", {
+      method: "POST",
+      body: data
+    });
+
+    const result = await response.text();
+
+    alert(result);
+    window.location.href = "mycomplaints.php";
+
+  } catch (error) {
+    console.error(error);
+    alert("Error submitting complaint");
+  }
+});
+      });
+    </script>
+  </body>
+</html>
