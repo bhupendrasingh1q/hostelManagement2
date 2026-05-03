@@ -29,7 +29,7 @@
             </div>
           </div>
           <nav class="space-y-3 text-slate-700">
-            <a href="index.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Dashboard</a>
+            <a href="index.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Dashboard</a>
             <a href="mycomplaints.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">My Complaints</a>
             <a href="filecomplaint.html" class="block rounded-2xl px-4 py-3 bg-slate-100 text-blue-700 font-semibold">File Complaint</a>
             <a href="assessmentmanagement.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Asset Management</a>
@@ -186,7 +186,7 @@
         if (text.includes('wifi') || text.includes('internet') || text.includes('network')) {
           return { category: 'Connectivity', priority: 'Low', reasoning: 'The issue seems related to connectivity or network access.' };
         }
-        if (text.includes('fire') || text.includes('smoke') || text.includes('gas')) {
+        if (text.includes('fire') || text.includes('smoke') || text.includes('gas') || text.includes('danger') || text.includes('disaster')) {
           return { category: 'Safety', priority: 'Critical', reasoning: 'This is a potentially dangerous issue and requires immediate action.' };
         }
         return { category: 'General', priority: 'Medium', reasoning: 'The AI categorized this as a general concern for review.' };
@@ -292,8 +292,6 @@ complaintForm.addEventListener('submit', async (event) => {
     });
 
     const result = await response.text();
-
-    alert(result);
     window.location.href = "mycomplaints.php";
 
   } catch (error) {

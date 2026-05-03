@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADGIPS Facility Central</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     :root {
       color-scheme: light;
@@ -510,6 +511,23 @@
   </style>
 </head>
 <body>
+  <?php
+include 'db.php';
+
+// Total complaints
+$totalQuery = $conn->query("SELECT COUNT(*) as total FROM complaints");
+$total = $totalQuery->fetch_assoc()['total'];
+
+// New complaints (last 5 minutes)
+$newQuery = $conn->query("SELECT COUNT(*) as new FROM complaints 
+                         WHERE created_at >= NOW() - INTERVAL 5 MINUTE");
+$new = $newQuery->fetch_assoc()['new'];
+
+// Assigned complaints
+$assignedQuery = $conn->query("SELECT COUNT(*) as assigned FROM complaints 
+                              WHERE status='Assigned'");
+$assigned = $assignedQuery->fetch_assoc()['assigned'];
+?>
   <div class="app">
     <aside class="sidebar">
       <div class="brand">
@@ -519,14 +537,13 @@
           <div class="brand-subtitle">Facility Central</div>
         </div>
       </div>
-
-      <nav class="nav">
-        <a class="active" href="index.html">Dashboard</a>
-        <a href="mycomplaints.php">My Complaints</a>
-        <a href="filecomplaint.html">File Complaint</a>
-        <a href="assessmentmanagement.html">Asset Management</a>
-        <a href="aiassistant.html">AI Assistant</a>
-      </nav>
+          <nav class="space-y-3 text-slate-700">
+            <a href="index.php" class="block rounded-2xl px-4 py-3 bg-slate-100 text-blue-700 font-semibold">Dashboard</a>
+            <a href="mycomplaints.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">My Complaints</a>
+            <a href="filecomplaint.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">File Complaint</a>
+            <a href="assessmentmanagement.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Asset Management</a>
+            <a href="aiassistant.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">AI Assistant</a>
+          </nav>
 
       <div class="performance-card">
         <strong>AI PERFORMANCE</strong>
@@ -560,27 +577,20 @@
       </section>
 
       <section class="grid-cards">
-        <article class="metric-card">
-          <span>Live Complaints</span>
-          <div style="display:flex; align-items:center; gap:10px;">
-            <h2>2</h2>
-            <span class="badge red">+3 New</span>
-          </div>
-        </article>
+       <article class="metric-card">
+         <span>Live Complaints</span>
+         <div style="display:flex; align-items:center; gap:10px;">
+           <h2><?php echo $total; ?></h2>
+           <span class="badge red">+<?php echo $new; ?> New</span>
+         </div>
+       </article>
 
+       <!-- In Progress -->
         <article class="metric-card">
           <span>In Progress</span>
-          <div style="display:flex; align-items:center; gap:10px; justify-content: space-between;">
-            <h2>1</h2>
-            <span class="badge yellow">Stable</span>
-          </div>
-        </article>
-
-        <article class="metric-card">
-          <span>Average Resolution</span>
-          <div style="display:flex; align-items:center; gap:10px; justify-content: space-between;">
-            <h2>4.2h</h2>
-            <span class="badge green">-12% Time</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <h2><?php echo $assigned; ?></h2>
+            <span class="badge yellow">Assigned</span>
           </div>
         </article>
 

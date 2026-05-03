@@ -4,7 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asset Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+      
       :root {
         color-scheme: dark light;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -432,12 +434,12 @@
             </div>
           </div>
 
-          <nav class="nav">
-            <a href="index.html">Dashboard</a>
-            <a href="mycomplaints.html">My Complaints</a>
-            <a href="filecomplaint.html">File Complaint</a>
-            <a href="assessmentmanagement.html" class="active">Asset Management</a>
-            <a href="aiassistant.html">AI Assistant</a>
+          <nav class="space-y-3 text-slate-700">
+            <a href="index.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">Dashboard</a>
+            <a href="mycomplaints.php" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">My Complaints</a>
+            <a href="filecomplaint.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">File Complaint</a>
+            <a href="assessmentmanagement.html" class="block rounded-2xl px-4 py-3 bg-slate-100 text-blue-700 font-semibold">Asset Management</a>
+            <a href="aiassistant.html" class="block rounded-2xl px-4 py-3 hover:bg-slate-100">AI Assistant</a>
           </nav>
         </div>
 
